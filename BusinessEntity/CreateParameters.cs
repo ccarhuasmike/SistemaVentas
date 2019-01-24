@@ -11,5 +11,7 @@ namespace BusinessEntity
         public tb_usuario usuario { get; set; }
         public Pagination paginacion { get; set; }
         public int demo { get; set; }
+        public int demo1 { get; set; }
+        public int demo2 { get; set; }
     }
 }
