@@ -1,1 +1,6 @@
 packages/*
+AccessData/obj/*
+BusinessEntity/obj/*
+BusinessLogic/obj/*
+Communities/obj/*
+.vs/*
