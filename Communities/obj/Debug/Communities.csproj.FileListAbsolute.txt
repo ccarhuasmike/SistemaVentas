@@ -1,0 +1,6 @@
+D:\Proyectos\SistemaVentas\Communities\bin\Debug\Communities.dll
+D:\Proyectos\SistemaVentas\Communities\bin\Debug\Communities.pdb
+D:\Proyectos\SistemaVentas\Communities\obj\Debug\Communities.csprojAssemblyReference.cache
+D:\Proyectos\SistemaVentas\Communities\obj\Debug\Communities.csproj.CoreCompileInputs.cache
+D:\Proyectos\SistemaVentas\Communities\obj\Debug\Communities.dll
+D:\Proyectos\SistemaVentas\Communities\obj\Debug\Communities.pdb

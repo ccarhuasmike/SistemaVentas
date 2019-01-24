@@ -1,0 +1,13 @@
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\AccessData.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\AccessData.pdb
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\BusinessEntity.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\Communities.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\Newtonsoft.Json.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\BusinessEntity.pdb
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\Communities.pdb
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\Newtonsoft.Json.xml
+D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.csprojAssemblyReference.cache
+D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.csproj.CoreCompileInputs.cache
+D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.csproj.CopyComplete
+D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.dll
+D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.pdb

@@ -1,0 +1,12 @@
+stimulsoft reports
+
+
+{
+  "usuario": {
+    "tx_nombre": ""
+  },
+  "paginacion": {
+    "CurrentPage": 1,
+    "ItemsPerPage": 5
+  }
+}

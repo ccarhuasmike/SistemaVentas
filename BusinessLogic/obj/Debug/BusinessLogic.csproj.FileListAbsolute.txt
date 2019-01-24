@@ -1,0 +1,15 @@
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\BusinessLogic.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\BusinessLogic.pdb
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\AccessData.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\BusinessEntity.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\Communities.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\AccessData.pdb
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\BusinessEntity.pdb
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\Communities.pdb
+D:\Proyectos\SistemaVentas\BusinessLogic\bin\Debug\Newtonsoft.Json.xml
+D:\Proyectos\SistemaVentas\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+D:\Proyectos\SistemaVentas\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+D:\Proyectos\SistemaVentas\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+D:\Proyectos\SistemaVentas\BusinessLogic\obj\Debug\BusinessLogic.dll
+D:\Proyectos\SistemaVentas\BusinessLogic\obj\Debug\BusinessLogic.pdb
