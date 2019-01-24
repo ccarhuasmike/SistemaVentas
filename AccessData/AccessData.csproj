@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="ConnectionBaseSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tb_productoData.cs" />
+    <Compile Include="tb_proveedorData.cs" />
     <Compile Include="tb_usuarioData.cs" />
   </ItemGroup>
   <ItemGroup>

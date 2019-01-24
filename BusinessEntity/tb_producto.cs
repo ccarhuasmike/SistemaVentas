@@ -10,6 +10,7 @@ namespace BusinessEntity
     {
         
         public string Codigo { get; set; } = "";
+        public string tx_nombre { get; set; } = "";
         public string tx_descripcion { get; set; } = "";
         public int In_cant_producto { get; set; } = 0;
         public int In_unidad { get; set; } = 0;
