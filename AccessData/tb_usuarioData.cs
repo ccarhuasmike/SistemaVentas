@@ -82,8 +82,7 @@ namespace AccessData
             {
                 conexion.Close();
                 conexion.Dispose();
-                comando.Dispose();
-                reader.Dispose();
+                comando.Dispose();                
             }
             return clientResponse;
         }

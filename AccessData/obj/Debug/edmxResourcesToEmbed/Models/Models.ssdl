@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDFERRETERIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="tx_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_dni" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="tx_ruc" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="tx_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_direccion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="tx_telefono" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="tx_celular" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="int" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario_mod" Type="int" />
+    <Property Name="dt_fe_mod" Type="datetime" />
+    <Property Name="IdEstado_reg" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_kardex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoMovimiento" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="In_cant_entrada" Type="int" />
+    <Property Name="In_cant_salida" Type="int" />
+    <Property Name="In_unidad" Type="int" Nullable="false" />
+    <Property Name="db_precio_costo" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_por_unidad" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_total" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="int" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario_mod" Type="int" />
+    <Property Name="dt_fe_mod" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tb_parameter_cab">
+    <Key>
+      <PropertyRef Name="skey_cab" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="skey_cab" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="tx_descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="IdEstado_reg" Type="int" />
+    <Property Name="dt_fe_crea" Type="datetime" />
+    <Property Name="tx_comentario" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb_parameter_det">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="skey_det" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="In_valor" Type="int" />
+    <Property Name="tx_valor" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="tx_descripcion" Type="varchar" MaxLength="1000" />
+    <Property Name="tx_comentario" Type="varchar" MaxLength="500" />
+    <Property Name="In_orden" Type="int" Nullable="false" />
+    <Property Name="IdEstado_reg" Type="int" />
+    <Property Name="dt_fe_crea" Type="datetime" />
+    <Property Name="skey_cab" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="tb_producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="tx_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_descripcion" Type="varchar" MaxLength="1000" />
+    <Property Name="In_cant_producto" Type="int" Nullable="false" />
+    <Property Name="In_unidad" Type="int" Nullable="false" />
+    <Property Name="db_precio_costo" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_sin_igv" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_bruto_igv" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="In_igv" Type="decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="tx_imagen_producto" Type="varchar" MaxLength="500" />
+    <Property Name="IdUsuario_crea" Type="int" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario_mod" Type="int" />
+    <Property Name="dt_fe_mod" Type="datetime" />
+    <Property Name="IdEstado_reg" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_proveedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="tx_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_ruc" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="tx_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_direccion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="tx_telefono" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="tx_celular" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="int" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario_mod" Type="int" />
+    <Property Name="dt_fe_mod" Type="datetime" />
+    <Property Name="IdEstado_reg" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tx_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tx_login" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="tx_password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="int" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario_mod" Type="int" />
+    <Property Name="dt_fe_mod" Type="datetime" />
+    <Property Name="IdEstado_reg" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tb_kardex__IdPro__34C8D9D1">
+    <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="1" />
+    <End Role="tb_kardex" Type="Self.tb_kardex" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_kardex">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tb_parame__skey___4222D4EF">
+    <End Role="tb_parameter_cab" Type="Self.tb_parameter_cab" Multiplicity="0..1" />
+    <End Role="tb_parameter_det" Type="Self.tb_parameter_det" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_parameter_cab">
+        <PropertyRef Name="skey_cab" />
+      </Principal>
+      <Dependent Role="tb_parameter_det">
+        <PropertyRef Name="skey_cab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_del_producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_del_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ins_producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tx_nombre" Type="varchar" Mode="In" />
+    <Parameter Name="tx_descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="In_cant_producto" Type="int" Mode="In" />
+    <Parameter Name="In_unidad" Type="int" Mode="In" />
+    <Parameter Name="db_precio_costo" Type="decimal" Mode="In" />
+    <Parameter Name="db_precio_sin_igv" Type="decimal" Mode="In" />
+    <Parameter Name="db_precio_bruto_igv" Type="decimal" Mode="In" />
+    <Parameter Name="In_igv" Type="decimal" Mode="In" />
+    <Parameter Name="tx_imagen_producto" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario_crea" Type="int" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ins_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tx_nombre" Type="varchar" Mode="In" />
+    <Parameter Name="tx_apellido_paterno" Type="varchar" Mode="In" />
+    <Parameter Name="tx_apellido_materno" Type="varchar" Mode="In" />
+    <Parameter Name="txt_email" Type="varchar" Mode="In" />
+    <Parameter Name="tx_login" Type="varchar" Mode="In" />
+    <Parameter Name="tx_password" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario_crea" Type="int" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_sel_producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vi_Pagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RegistrosporPagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RecordCount" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_sel_producto_x_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_sel_proveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vi_Pagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RegistrosporPagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RecordCount" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_sel_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vi_Pagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RegistrosporPagina" Type="int" Mode="In" />
+    <Parameter Name="vi_RecordCount" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_sel_usuario_x_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_upd_producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tx_nombre" Type="varchar" Mode="In" />
+    <Parameter Name="tx_descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="In_cant_producto" Type="int" Mode="In" />
+    <Parameter Name="In_unidad" Type="int" Mode="In" />
+    <Parameter Name="db_precio_costo" Type="decimal" Mode="In" />
+    <Parameter Name="db_precio_sin_igv" Type="decimal" Mode="In" />
+    <Parameter Name="db_precio_bruto_igv" Type="decimal" Mode="In" />
+    <Parameter Name="In_igv" Type="decimal" Mode="In" />
+    <Parameter Name="tx_imagen_producto" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario_mod" Type="int" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_upd_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tx_nombre" Type="varchar" Mode="In" />
+    <Parameter Name="tx_apellido_paterno" Type="varchar" Mode="In" />
+    <Parameter Name="tx_apellido_materno" Type="varchar" Mode="In" />
+    <Parameter Name="txt_email" Type="varchar" Mode="In" />
+    <Parameter Name="tx_login" Type="varchar" Mode="In" />
+    <Parameter Name="tx_password" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario_mod" Type="int" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="BDFERRETERIAModelStoreContainer">
+    <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_kardex" EntityType="Self.tb_kardex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_parameter_cab" EntityType="Self.tb_parameter_cab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_parameter_det" EntityType="Self.tb_parameter_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_producto" EntityType="Self.tb_producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_proveedor" EntityType="Self.tb_proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tb_kardex__IdPro__34C8D9D1" Association="Self.FK__tb_kardex__IdPro__34C8D9D1">
+      <End Role="tb_producto" EntitySet="tb_producto" />
+      <End Role="tb_kardex" EntitySet="tb_kardex" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tb_parame__skey___4222D4EF" Association="Self.FK__tb_parame__skey___4222D4EF">
+      <End Role="tb_parameter_cab" EntitySet="tb_parameter_cab" />
+      <End Role="tb_parameter_det" EntitySet="tb_parameter_det" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

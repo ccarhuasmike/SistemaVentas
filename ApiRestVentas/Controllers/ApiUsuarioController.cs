@@ -1,6 +1,7 @@
 ﻿using BusinessEntity;
 using BusinessLogic;
 using Communities;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,16 @@ namespace ApiRestVentas.Controllers
 {
     [RoutePrefix("api/usuario")]
     public class ApiUsuarioController : ApiController
-    {
+    {   
         [Route("sel_usuario"), HttpPost]
-        public ClientResponse sel_usuario(CreateParameters parameter)
+        public ClientResponse sel_usuario(JObject objData)
         {
             ClientResponse response;
             try
-            {   
-                response = new tb_usuarioLogic().sel_usuario(new object[] { parameter.usuario, parameter.paginacion });
+            {
+                tb_usuario usuario = objData["usuario"].ToObject<tb_usuario>();
+                Pagination pagination = objData["paginacion"].ToObject<Pagination>();
+                response = new tb_usuarioLogic().sel_usuario(new object[] { usuario, pagination });
             }
             catch (Exception exception)
             {
@@ -27,13 +30,15 @@ namespace ApiRestVentas.Controllers
             }
             return response;
         }
+
         [Route("sel_usuarioxId"), HttpPost]
-        public ClientResponse sel_usuarioxId(CreateParameters parameter)
+        public ClientResponse sel_usuarioxId(JObject objData)
         {
             ClientResponse response;
             try
             {
-                response = new tb_usuarioLogic().sel_usuarioxId(new object[] { parameter.usuario });
+                tb_usuario usuario = objData["usuario"].ToObject<tb_usuario>();
+                response = new tb_usuarioLogic().sel_usuarioxId(new object[] { usuario });
             }
             catch (Exception exception)
             {
@@ -42,12 +47,13 @@ namespace ApiRestVentas.Controllers
             return response;
         }
         [Route("del_usuario"), HttpPost]
-        public ClientResponse del_usuario(CreateParameters parameter)
+        public ClientResponse del_usuario(JObject objData)
         {
             ClientResponse response;
             try
             {
-                response = new tb_usuarioLogic().del_usuario(new object[] { parameter.usuario });
+                tb_usuario usuario = objData["usuario"].ToObject<tb_usuario>();
+                response = new tb_usuarioLogic().del_usuario(new object[] { usuario });
             }
             catch (Exception exception)
             {
@@ -56,12 +62,13 @@ namespace ApiRestVentas.Controllers
             return response;
         }
         [Route("upd_usuario"), HttpPost]
-        public ClientResponse upd_usuario(CreateParameters parameter)
+        public ClientResponse upd_usuario(JObject objData)
         {
             ClientResponse response;
             try
             {
-                response = new tb_usuarioLogic().upd_usuario(new object[] { parameter.usuario });
+                tb_usuario usuario = objData["usuario"].ToObject<tb_usuario>();
+                response = new tb_usuarioLogic().upd_usuario(new object[] { usuario });
             }
             catch (Exception exception)
             {
@@ -70,12 +77,13 @@ namespace ApiRestVentas.Controllers
             return response;
         }
         [Route("ins_usuario"), HttpPost]
-        public ClientResponse ins_usuario(CreateParameters parameter)
+        public ClientResponse ins_usuario(JObject objData)
         {
             ClientResponse response;
             try
             {
-                response = new tb_usuarioLogic().ins_usuario(new object[] { parameter.usuario });
+                tb_usuario usuario = objData["usuario"].ToObject<tb_usuario>();
+                response = new tb_usuarioLogic().ins_usuario(new object[] { usuario });
             }
             catch (Exception exception)
             {

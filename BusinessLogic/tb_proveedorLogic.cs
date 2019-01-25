@@ -16,9 +16,25 @@ namespace BusinessLogic
         {
             _tb_proveedorData = new tb_proveedorData();
         }
-        public ClientResponse ListarProveedor(object[] parameter)
+        public ClientResponse sel_proveedor(object[] parameter)
         {
-            return _tb_proveedorData.ListarProveedor(parameter);
+            return _tb_proveedorData.sel_proveedor(parameter);
+        }
+        public ClientResponse ins_proveedor(object[] parameter)
+        {
+            return _tb_proveedorData.ins_proveedor(parameter);
+        }
+        public ClientResponse upd_proveedor(object[] parameter)
+        {
+            return _tb_proveedorData.upd_proveedor(parameter);
+        }
+        public ClientResponse del_proveedor(object[] parameter)
+        {
+            return _tb_proveedorData.del_proveedor(parameter);
+        }
+        public ClientResponse sel_proveedorxId(object[] parameter)
+        {
+            return _tb_proveedorData.sel_proveedorxId(parameter);
         }
     }
 }

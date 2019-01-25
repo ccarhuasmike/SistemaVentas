@@ -1,0 +1,23 @@
+Listar Usuario - Post
+{
+  "usuario": {
+    "tx_nombre": ""
+  },
+  "paginacion": {
+    "CurrentPage": 1,
+    "ItemsPerPage": 5
+  }
+}
+Insert de usuario
+
+{
+  "usuario": {
+    "tx_nombre": "",
+    "tx_apellido_paterno": "",
+    "tx_apellido_paterno": "",
+    "tx_email": "",
+    "tx_login": "",
+    "tx_password": "",
+    "IdUsuario_crea": 1    
+  }
+}

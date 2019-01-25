@@ -36,6 +36,6 @@ namespace BusinessLogic
         public ClientResponse sel_usuarioxId(object[] parameter)
         {
             return _tb_usuarioData.sel_usuarioxId(parameter);
-        }
+        }      
     }
 }

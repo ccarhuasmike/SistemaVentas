@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDFERRETERIAModelStoreContainer" CdmEntityContainer="BDFERRETERIAEntities">
+    <EntitySetMapping Name="tb_cliente">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_cliente">
+        <MappingFragment StoreEntitySet="tb_cliente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_apellido_paterno" ColumnName="tx_apellido_paterno" />
+          <ScalarProperty Name="tx_apellido_materno" ColumnName="tx_apellido_materno" />
+          <ScalarProperty Name="tx_dni" ColumnName="tx_dni" />
+          <ScalarProperty Name="tx_ruc" ColumnName="tx_ruc" />
+          <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+          <ScalarProperty Name="tx_direccion" ColumnName="tx_direccion" />
+          <ScalarProperty Name="tx_telefono" ColumnName="tx_telefono" />
+          <ScalarProperty Name="tx_celular" ColumnName="tx_celular" />
+          <ScalarProperty Name="IdUsuario_crea" ColumnName="IdUsuario_crea" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="IdUsuario_mod" ColumnName="IdUsuario_mod" />
+          <ScalarProperty Name="dt_fe_mod" ColumnName="dt_fe_mod" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_kardex">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_kardex">
+        <MappingFragment StoreEntitySet="tb_kardex">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdTipoMovimiento" ColumnName="IdTipoMovimiento" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="In_cant_entrada" ColumnName="In_cant_entrada" />
+          <ScalarProperty Name="In_cant_salida" ColumnName="In_cant_salida" />
+          <ScalarProperty Name="In_unidad" ColumnName="In_unidad" />
+          <ScalarProperty Name="db_precio_costo" ColumnName="db_precio_costo" />
+          <ScalarProperty Name="db_precio_por_unidad" ColumnName="db_precio_por_unidad" />
+          <ScalarProperty Name="db_precio_total" ColumnName="db_precio_total" />
+          <ScalarProperty Name="IdUsuario_crea" ColumnName="IdUsuario_crea" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="IdUsuario_mod" ColumnName="IdUsuario_mod" />
+          <ScalarProperty Name="dt_fe_mod" ColumnName="dt_fe_mod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_parameter_cab">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_parameter_cab">
+        <MappingFragment StoreEntitySet="tb_parameter_cab">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="skey_cab" ColumnName="skey_cab" />
+          <ScalarProperty Name="tx_descripcion" ColumnName="tx_descripcion" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="tx_comentario" ColumnName="tx_comentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_parameter_det">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_parameter_det">
+        <MappingFragment StoreEntitySet="tb_parameter_det">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="skey_det" ColumnName="skey_det" />
+          <ScalarProperty Name="In_valor" ColumnName="In_valor" />
+          <ScalarProperty Name="tx_valor" ColumnName="tx_valor" />
+          <ScalarProperty Name="tx_descripcion" ColumnName="tx_descripcion" />
+          <ScalarProperty Name="tx_comentario" ColumnName="tx_comentario" />
+          <ScalarProperty Name="In_orden" ColumnName="In_orden" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="skey_cab" ColumnName="skey_cab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_producto">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_producto">
+        <MappingFragment StoreEntitySet="tb_producto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_descripcion" ColumnName="tx_descripcion" />
+          <ScalarProperty Name="In_cant_producto" ColumnName="In_cant_producto" />
+          <ScalarProperty Name="In_unidad" ColumnName="In_unidad" />
+          <ScalarProperty Name="db_precio_costo" ColumnName="db_precio_costo" />
+          <ScalarProperty Name="db_precio_sin_igv" ColumnName="db_precio_sin_igv" />
+          <ScalarProperty Name="db_precio_bruto_igv" ColumnName="db_precio_bruto_igv" />
+          <ScalarProperty Name="In_igv" ColumnName="In_igv" />
+          <ScalarProperty Name="tx_imagen_producto" ColumnName="tx_imagen_producto" />
+          <ScalarProperty Name="IdUsuario_crea" ColumnName="IdUsuario_crea" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="IdUsuario_mod" ColumnName="IdUsuario_mod" />
+          <ScalarProperty Name="dt_fe_mod" ColumnName="dt_fe_mod" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_proveedor">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_proveedor">
+        <MappingFragment StoreEntitySet="tb_proveedor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_apellido_paterno" ColumnName="tx_apellido_paterno" />
+          <ScalarProperty Name="tx_apellido_materno" ColumnName="tx_apellido_materno" />
+          <ScalarProperty Name="tx_ruc" ColumnName="tx_ruc" />
+          <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+          <ScalarProperty Name="tx_direccion" ColumnName="tx_direccion" />
+          <ScalarProperty Name="tx_telefono" ColumnName="tx_telefono" />
+          <ScalarProperty Name="tx_celular" ColumnName="tx_celular" />
+          <ScalarProperty Name="IdUsuario_crea" ColumnName="IdUsuario_crea" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="IdUsuario_mod" ColumnName="IdUsuario_mod" />
+          <ScalarProperty Name="dt_fe_mod" ColumnName="dt_fe_mod" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_usuario">
+      <EntityTypeMapping TypeName="BDFERRETERIAModel.tb_usuario">
+        <MappingFragment StoreEntitySet="tb_usuario">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_apellido_paterno" ColumnName="tx_apellido_paterno" />
+          <ScalarProperty Name="tx_apellido_materno" ColumnName="tx_apellido_materno" />
+          <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+          <ScalarProperty Name="tx_login" ColumnName="tx_login" />
+          <ScalarProperty Name="tx_password" ColumnName="tx_password" />
+          <ScalarProperty Name="IdUsuario_crea" ColumnName="IdUsuario_crea" />
+          <ScalarProperty Name="dt_fe_crea" ColumnName="dt_fe_crea" />
+          <ScalarProperty Name="IdUsuario_mod" ColumnName="IdUsuario_mod" />
+          <ScalarProperty Name="dt_fe_mod" ColumnName="dt_fe_mod" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_del_producto" FunctionName="BDFERRETERIAModel.Store.sp_del_producto" />
+    <FunctionImportMapping FunctionImportName="sp_del_usuario" FunctionName="BDFERRETERIAModel.Store.sp_del_usuario" />
+    <FunctionImportMapping FunctionImportName="sp_ins_producto" FunctionName="BDFERRETERIAModel.Store.sp_ins_producto" />
+    <FunctionImportMapping FunctionImportName="sp_ins_usuario" FunctionName="BDFERRETERIAModel.Store.sp_ins_usuario" />
+    <FunctionImportMapping FunctionImportName="sp_sel_producto" FunctionName="BDFERRETERIAModel.Store.sp_sel_producto" />
+    <FunctionImportMapping FunctionImportName="sp_sel_producto_x_id" FunctionName="BDFERRETERIAModel.Store.sp_sel_producto_x_id">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDFERRETERIAModel.sp_sel_producto_x_id_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_descripcion" ColumnName="tx_descripcion" />
+          <ScalarProperty Name="In_cant_producto" ColumnName="In_cant_producto" />
+          <ScalarProperty Name="In_unidad" ColumnName="In_unidad" />
+          <ScalarProperty Name="db_precio_costo" ColumnName="db_precio_costo" />
+          <ScalarProperty Name="db_precio_sin_igv" ColumnName="db_precio_sin_igv" />
+          <ScalarProperty Name="db_precio_bruto_igv" ColumnName="db_precio_bruto_igv" />
+          <ScalarProperty Name="In_igv" ColumnName="In_igv" />
+          <ScalarProperty Name="tx_imagen_producto" ColumnName="tx_imagen_producto" />
+          <ScalarProperty Name="IdEstado_reg" ColumnName="IdEstado_reg" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_sel_proveedor" FunctionName="BDFERRETERIAModel.Store.sp_sel_proveedor" />
+    <FunctionImportMapping FunctionImportName="sp_sel_usuario" FunctionName="BDFERRETERIAModel.Store.sp_sel_usuario" />
+    <FunctionImportMapping FunctionImportName="sp_sel_usuario_x_id" FunctionName="BDFERRETERIAModel.Store.sp_sel_usuario_x_id">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDFERRETERIAModel.sp_sel_usuario_x_id_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tx_nombre" ColumnName="tx_nombre" />
+          <ScalarProperty Name="tx_apellido_paterno" ColumnName="tx_apellido_paterno" />
+          <ScalarProperty Name="tx_apellido_materno" ColumnName="tx_apellido_materno" />
+          <ScalarProperty Name="tx_email" ColumnName="tx_email" />
+          <ScalarProperty Name="tx_login" ColumnName="tx_login" />
+          <ScalarProperty Name="tx_password" ColumnName="tx_password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_upd_producto" FunctionName="BDFERRETERIAModel.Store.sp_upd_producto" />
+    <FunctionImportMapping FunctionImportName="sp_upd_usuario" FunctionName="BDFERRETERIAModel.Store.sp_upd_usuario" />
+  </EntityContainerMapping>
+</Mapping>

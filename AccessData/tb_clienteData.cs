@@ -50,16 +50,17 @@ namespace AccessData
                         comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _cliente.tx_nombre;
                         comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_paterno;
                         comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_ruc", SqlDbType.VarChar, 11).Value = _cliente.tx_apellido_paterno;
                         comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = _cliente.tx_email;
-                        comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = _cliente.tx_login;
-                        comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = _cliente.tx_password;
-                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = _cliente.IdUsuario_crea;
+                        comando.Parameters.Add("@tx_direccion", SqlDbType.VarChar, 100).Value = _cliente.tx_direccion;
+                        comando.Parameters.Add("@tx_telefono", SqlDbType.VarChar, 11).Value = _cliente.tx_telefono;
+                        comando.Parameters.Add("@tx_celular", SqlDbType.VarChar, 11).Value = _cliente.tx_celular;
+                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int).Value = _cliente.IdUsuario_crea;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                         conexion.Open();
                         comando.ExecuteNonQuery();
                         if (comando.Parameters["@Id"] != null)
                         {
-
                             id = Convert.ToInt32(comando.Parameters["@Id"].Value);
                             object initDatos = new
                             {
@@ -67,8 +68,6 @@ namespace AccessData
                             };
                             clientResponse.Status = "OK";
                             clientResponse.Data = initDatos;
-                            //IEnumerable<Tbl_cliente> lst = GetUsuario_X_Id(id);
-                            //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
                         }
                     }
                 }
@@ -83,7 +82,6 @@ namespace AccessData
                 conexion.Close();
                 conexion.Dispose();
                 comando.Dispose();
-                reader.Dispose();
             }
             return clientResponse;
         }
@@ -97,20 +95,18 @@ namespace AccessData
                     using (comando = new SqlCommand("sp_upd_cliente", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _cliente.tx_nombre == null ? "" : _cliente.tx_nombre;
-                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_paterno == null ? "" : _cliente.tx_apellido_paterno;
-                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_materno == null ? "" : _cliente.tx_apellido_materno;
-                        comando.Parameters.Add("@tx_dni", SqlDbType.VarChar, 50).Value = _cliente.tx_email == null ? "" : _cliente.tx_email;
-                        comando.Parameters.Add("@tx_ruc", SqlDbType.VarChar, 50).Value = _cliente.tx_email == null ? "" : _cliente.tx_email;
-                        comando.Parameters.Add("@tx_email", SqlDbType.VarChar, 50).Value = _cliente.tx_email == null ? "" : _cliente.tx_email;
-                        comando.Parameters.Add("@tx_direccion", SqlDbType.VarChar, 20).Value = _cliente.tx_direccion == null ? "" : _cliente.tx_direccion;
-                        comando.Parameters.Add("@tx_telefono", SqlDbType.VarChar, 200).Value = _cliente.tx_telefono == null ? "" : _cliente.tx_telefono; ;
-                        comando.Parameters.Add("@tx_celular", SqlDbType.VarChar, 200).Value = _cliente.tx_celular == null ? "" : _cliente.tx_celular; ;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _cliente.tx_nombre;
+                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _cliente.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_ruc", SqlDbType.VarChar, 11).Value = _cliente.tx_apellido_paterno;
+                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = _cliente.tx_email;
+                        comando.Parameters.Add("@tx_direccion", SqlDbType.VarChar, 100).Value = _cliente.tx_direccion;
+                        comando.Parameters.Add("@tx_telefono", SqlDbType.VarChar, 11).Value = _cliente.tx_telefono;
+                        comando.Parameters.Add("@tx_celular", SqlDbType.VarChar, 11).Value = _cliente.tx_celular;
                         comando.Parameters.Add("@IdUsuario_mod", SqlDbType.Int).Value = _cliente.IdUsuario_mod;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Value = _cliente.Id;
                         conexion.Open();
                         comando.ExecuteNonQuery();
-                        clientResponse.Status = "OK";
                     }
                 }
             }
@@ -124,7 +120,6 @@ namespace AccessData
                 conexion.Close();
                 conexion.Dispose();
                 comando.Dispose();
-                reader.Dispose();
             }
             return clientResponse;
         }
@@ -135,7 +130,7 @@ namespace AccessData
                 var _cliente = (tb_cliente)parametro[0];
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
                 {
-                    using (comando = new SqlCommand("sp_del_tb_cliente", conexion))
+                    using (comando = new SqlCommand("sp_del_cliente", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Value = _cliente.Id;
@@ -154,8 +149,7 @@ namespace AccessData
             {
                 conexion.Close();
                 conexion.Dispose();
-                comando.Dispose();
-                reader.Dispose();
+                comando.Dispose();                
             }
             return clientResponse;
         }
@@ -176,17 +170,17 @@ namespace AccessData
                             if (reader.Read())
                             {
                                 entidad = new tb_cliente();
-                                entidad.Id = (reader["id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["id"].ToString());
+                                entidad.Id = (reader["Id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["Id"].ToString());
                                 entidad.Codigo = (reader["Codigo"] == DBNull.Value) ? String.Empty : (reader["Codigo"]).ToString();
                                 entidad.tx_nombre = (reader["tx_nombre"] == DBNull.Value) ? String.Empty : (reader["tx_nombre"]).ToString();
                                 entidad.tx_apellido_paterno = (reader["tx_apellido_paterno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_paterno"]).ToString();
-                                entidad.tx_apellido_materno = (reader["tx_apellido_materno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_materno"]).ToString();                                
-                                entidad.tx_dni = (reader["tx_dni"] == DBNull.Value) ? String.Empty : (reader["tx_dni"]).ToString();
+                                entidad.tx_apellido_materno = (reader["tx_apellido_materno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_materno"]).ToString();
                                 entidad.tx_ruc = (reader["tx_ruc"] == DBNull.Value) ? String.Empty : (reader["tx_ruc"]).ToString();
                                 entidad.tx_email = (reader["tx_email"] == DBNull.Value) ? String.Empty : (reader["tx_email"]).ToString();
-                                entidad.tx_direccion = (reader["tx_direccion"] == DBNull.Value) ? string.Empty : (reader["tx_direccion"]).ToString();
-                                entidad.tx_telefono = (reader["tx_telefono"] == DBNull.Value) ? string.Empty : (reader["tx_telefono"]).ToString();
-                                entidad.tx_celular = (reader["tx_celular"] == DBNull.Value) ? string.Empty : (reader["tx_celular"]).ToString();
+                                entidad.tx_direccion = (reader["tx_direccion"] == DBNull.Value) ? String.Empty : (reader["tx_direccion"]).ToString();
+                                entidad.tx_telefono = (reader["tx_telefono"] == DBNull.Value) ? String.Empty : (reader["tx_telefono"]).ToString();
+                                entidad.tx_celular = (reader["tx_celular"] == DBNull.Value) ? String.Empty : (reader["tx_celular"]).ToString();
+                                entidad.IdEstado_reg = (reader["IdEstado_reg"] == DBNull.Value) ? 0 : int.Parse((reader["IdEstado_reg"]).ToString());
                             }
                         }
                     }
@@ -233,17 +227,17 @@ namespace AccessData
                             while (reader.Read())
                             {
                                 entidad = new tb_cliente();
-                                entidad.Id = (reader["id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["id"].ToString());
+                                entidad.Id = (reader["Id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["Id"].ToString());
                                 entidad.Codigo = (reader["Codigo"] == DBNull.Value) ? String.Empty : (reader["Codigo"]).ToString();
                                 entidad.tx_nombre = (reader["tx_nombre"] == DBNull.Value) ? String.Empty : (reader["tx_nombre"]).ToString();
                                 entidad.tx_apellido_paterno = (reader["tx_apellido_paterno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_paterno"]).ToString();
                                 entidad.tx_apellido_materno = (reader["tx_apellido_materno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_materno"]).ToString();
-                                entidad.tx_dni = (reader["tx_dni"] == DBNull.Value) ? String.Empty : (reader["tx_dni"]).ToString();
                                 entidad.tx_ruc = (reader["tx_ruc"] == DBNull.Value) ? String.Empty : (reader["tx_ruc"]).ToString();
-                                entidad.tx_email = (reader["tx_email"] == DBNull.Value) ? String.Empty : (reader["tx_email"]).ToString();                                
-                                entidad.tx_direccion = (reader["tx_direccion"] == DBNull.Value) ? string.Empty : (reader["tx_direccion"]).ToString();
-                                entidad.tx_telefono = (reader["tx_telefono"] == DBNull.Value) ? string.Empty : (reader["tx_telefono"]).ToString();
-                                entidad.tx_celular = (reader["tx_celular"] == DBNull.Value) ? string.Empty : (reader["tx_celular"]).ToString();
+                                entidad.tx_email = (reader["tx_email"] == DBNull.Value) ? String.Empty : (reader["tx_email"]).ToString();
+                                entidad.tx_direccion = (reader["tx_direccion"] == DBNull.Value) ? String.Empty : (reader["tx_direccion"]).ToString();
+                                entidad.tx_telefono = (reader["tx_telefono"] == DBNull.Value) ? String.Empty : (reader["tx_telefono"]).ToString();
+                                entidad.tx_celular = (reader["tx_celular"] == DBNull.Value) ? String.Empty : (reader["tx_celular"]).ToString();
+                                entidad.IdEstado_reg = (reader["IdEstado_reg"] == DBNull.Value) ? 0 : int.Parse((reader["IdEstado_reg"]).ToString());
                                 lstcliente.Add(entidad);
                             }
                         }
@@ -266,7 +260,7 @@ namespace AccessData
             Pagination responsepaginacion = new Pagination()
             {
                 TotalItems = recordCount,
-                TotalPages = (int)Math.Ceiling((double)recordCount / _paginacion.ItemsPerPage)                
+                TotalPages = (int)Math.Ceiling((double)recordCount / _paginacion.ItemsPerPage)
             };
             clientResponse.DataJson = JsonConvert.SerializeObject(lstcliente).ToString();
             clientResponse.paginacion = JsonConvert.SerializeObject(responsepaginacion).ToString();

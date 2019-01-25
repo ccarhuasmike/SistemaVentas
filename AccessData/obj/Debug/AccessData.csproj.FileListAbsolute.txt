@@ -11,3 +11,7 @@ D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.csproj.CoreCompileInp
 D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.csproj.CopyComplete
 D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.dll
 D:\Proyectos\SistemaVentas\AccessData\obj\Debug\AccessData.pdb
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\EntityFramework.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\EntityFramework.SqlServer.dll
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\EntityFramework.xml
+D:\Proyectos\SistemaVentas\AccessData\bin\Debug\EntityFramework.SqlServer.xml

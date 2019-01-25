@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDFERRETERIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tb_cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tx_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_dni" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_celular" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="Int32" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuario_mod" Type="Int32" />
+    <Property Name="dt_fe_mod" Type="DateTime" Precision="3" />
+    <Property Name="IdEstado_reg" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_kardex">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoMovimiento" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="In_cant_entrada" Type="Int32" />
+    <Property Name="In_cant_salida" Type="Int32" />
+    <Property Name="In_unidad" Type="Int32" Nullable="false" />
+    <Property Name="db_precio_costo" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_por_unidad" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_total" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="Int32" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuario_mod" Type="Int32" />
+    <Property Name="dt_fe_mod" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tb_producto" Relationship="Self.FK__tb_kardex__IdPro__34C8D9D1" FromRole="tb_kardex" ToRole="tb_producto" />
+  </EntityType>
+  <EntityType Name="tb_parameter_cab">
+    <Key>
+      <PropertyRef Name="skey_cab" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="skey_cab" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstado_reg" Type="Int32" />
+    <Property Name="dt_fe_crea" Type="DateTime" Precision="3" />
+    <Property Name="tx_comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_parameter_det" Relationship="Self.FK__tb_parame__skey___4222D4EF" FromRole="tb_parameter_cab" ToRole="tb_parameter_det" />
+  </EntityType>
+  <EntityType Name="tb_parameter_det">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="skey_det" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="In_valor" Type="Int32" />
+    <Property Name="tx_valor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="tx_comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="In_orden" Type="Int32" Nullable="false" />
+    <Property Name="IdEstado_reg" Type="Int32" />
+    <Property Name="dt_fe_crea" Type="DateTime" Precision="3" />
+    <Property Name="skey_cab" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_parameter_cab" Relationship="Self.FK__tb_parame__skey___4222D4EF" FromRole="tb_parameter_det" ToRole="tb_parameter_cab" />
+  </EntityType>
+  <EntityType Name="tb_producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tx_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="In_cant_producto" Type="Int32" Nullable="false" />
+    <Property Name="In_unidad" Type="Int32" Nullable="false" />
+    <Property Name="db_precio_costo" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_sin_igv" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="db_precio_bruto_igv" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="In_igv" Type="Decimal" Precision="9" Scale="1" Nullable="false" />
+    <Property Name="tx_imagen_producto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IdUsuario_crea" Type="Int32" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuario_mod" Type="Int32" />
+    <Property Name="dt_fe_mod" Type="DateTime" Precision="3" />
+    <Property Name="IdEstado_reg" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_kardex" Relationship="Self.FK__tb_kardex__IdPro__34C8D9D1" FromRole="tb_producto" ToRole="tb_kardex" />
+  </EntityType>
+  <EntityType Name="tb_proveedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tx_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_celular" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="Int32" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuario_mod" Type="Int32" />
+    <Property Name="dt_fe_mod" Type="DateTime" Precision="3" />
+    <Property Name="IdEstado_reg" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tx_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tx_password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdUsuario_crea" Type="Int32" Nullable="false" />
+    <Property Name="dt_fe_crea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdUsuario_mod" Type="Int32" />
+    <Property Name="dt_fe_mod" Type="DateTime" Precision="3" />
+    <Property Name="IdEstado_reg" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tb_kardex__IdPro__34C8D9D1">
+    <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="1" />
+    <End Role="tb_kardex" Type="Self.tb_kardex" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tb_kardex">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tb_parame__skey___4222D4EF">
+    <End Role="tb_parameter_cab" Type="Self.tb_parameter_cab" Multiplicity="0..1" />
+    <End Role="tb_parameter_det" Type="Self.tb_parameter_det" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_parameter_cab">
+        <PropertyRef Name="skey_cab" />
+      </Principal>
+      <Dependent Role="tb_parameter_det">
+        <PropertyRef Name="skey_cab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDFERRETERIAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" />
+    <EntitySet Name="tb_kardex" EntityType="Self.tb_kardex" />
+    <EntitySet Name="tb_parameter_cab" EntityType="Self.tb_parameter_cab" />
+    <EntitySet Name="tb_parameter_det" EntityType="Self.tb_parameter_det" />
+    <EntitySet Name="tb_producto" EntityType="Self.tb_producto" />
+    <EntitySet Name="tb_proveedor" EntityType="Self.tb_proveedor" />
+    <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" />
+    <AssociationSet Name="FK__tb_kardex__IdPro__34C8D9D1" Association="Self.FK__tb_kardex__IdPro__34C8D9D1">
+      <End Role="tb_producto" EntitySet="tb_producto" />
+      <End Role="tb_kardex" EntitySet="tb_kardex" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tb_parame__skey___4222D4EF" Association="Self.FK__tb_parame__skey___4222D4EF">
+      <End Role="tb_parameter_cab" EntitySet="tb_parameter_cab" />
+      <End Role="tb_parameter_det" EntitySet="tb_parameter_det" />
+    </AssociationSet>
+    <FunctionImport Name="sp_del_producto">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_del_usuario">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ins_producto">
+      <Parameter Name="tx_nombre" Mode="In" Type="String" />
+      <Parameter Name="tx_descripcion" Mode="In" Type="String" />
+      <Parameter Name="In_cant_producto" Mode="In" Type="Int32" />
+      <Parameter Name="In_unidad" Mode="In" Type="Int32" />
+      <Parameter Name="db_precio_costo" Mode="In" Type="Decimal" />
+      <Parameter Name="db_precio_sin_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="db_precio_bruto_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="In_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="tx_imagen_producto" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario_crea" Mode="In" Type="Int32" />
+      <Parameter Name="Id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ins_usuario">
+      <Parameter Name="tx_nombre" Mode="In" Type="String" />
+      <Parameter Name="tx_apellido_paterno" Mode="In" Type="String" />
+      <Parameter Name="tx_apellido_materno" Mode="In" Type="String" />
+      <Parameter Name="txt_email" Mode="In" Type="String" />
+      <Parameter Name="tx_login" Mode="In" Type="String" />
+      <Parameter Name="tx_password" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario_crea" Mode="In" Type="Int32" />
+      <Parameter Name="Id" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sel_producto">
+      <Parameter Name="vi_Pagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RegistrosporPagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sel_producto_x_id" ReturnType="Collection(BDFERRETERIAModel.sp_sel_producto_x_id_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sel_proveedor">
+      <Parameter Name="vi_Pagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RegistrosporPagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sel_usuario">
+      <Parameter Name="vi_Pagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RegistrosporPagina" Mode="In" Type="Int32" />
+      <Parameter Name="vi_RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_sel_usuario_x_id" ReturnType="Collection(BDFERRETERIAModel.sp_sel_usuario_x_id_Result)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upd_producto">
+      <Parameter Name="tx_nombre" Mode="In" Type="String" />
+      <Parameter Name="tx_descripcion" Mode="In" Type="String" />
+      <Parameter Name="In_cant_producto" Mode="In" Type="Int32" />
+      <Parameter Name="In_unidad" Mode="In" Type="Int32" />
+      <Parameter Name="db_precio_costo" Mode="In" Type="Decimal" />
+      <Parameter Name="db_precio_sin_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="db_precio_bruto_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="In_igv" Mode="In" Type="Decimal" />
+      <Parameter Name="tx_imagen_producto" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario_mod" Mode="In" Type="Int32" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upd_usuario">
+      <Parameter Name="tx_nombre" Mode="In" Type="String" />
+      <Parameter Name="tx_apellido_paterno" Mode="In" Type="String" />
+      <Parameter Name="tx_apellido_materno" Mode="In" Type="String" />
+      <Parameter Name="txt_email" Mode="In" Type="String" />
+      <Parameter Name="tx_login" Mode="In" Type="String" />
+      <Parameter Name="tx_password" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario_mod" Mode="In" Type="Int32" />
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_sel_producto_x_id_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="tx_nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tx_descripcion" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="In_cant_producto" Nullable="false" />
+    <Property Type="Int32" Name="In_unidad" Nullable="false" />
+    <Property Type="Decimal" Name="db_precio_costo" Nullable="false" Precision="9" Scale="1" />
+    <Property Type="Decimal" Name="db_precio_sin_igv" Nullable="false" Precision="9" Scale="1" />
+    <Property Type="Decimal" Name="db_precio_bruto_igv" Nullable="false" Precision="9" Scale="1" />
+    <Property Type="Decimal" Name="In_igv" Nullable="false" Precision="9" Scale="1" />
+    <Property Type="String" Name="tx_imagen_producto" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="IdEstado_reg" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_sel_usuario_x_id_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="tx_nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tx_apellido_paterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tx_apellido_materno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tx_email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tx_login" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="tx_password" Nullable="false" MaxLength="200" />
+  </ComplexType>
+</Schema>
