@@ -498,7 +498,6 @@ WHERE RowNum BETWEEN (@vi_Pagina - 1) * @vi_RegistrosporPagina + 1 AND @vi_Pagin
   
 DROP TABLE #temporales   
 END
-
 GO
 create PROC sp_ins_cliente
 (
@@ -560,7 +559,7 @@ create procedure sp_upd_cliente(
 )
 as
 begin
-update tb_proveedor
+update tb_cliente
 set		
 		tx_nombre=@tx_nombre,
 		tx_apellido_paterno=@tx_apellido_paterno,
@@ -576,7 +575,7 @@ set
 end
 
 go
-create procedure sp_sel_proveedor_x_id(
+create procedure sp_sel_cliente_x_id(
 @Id int 
 )
 as
@@ -594,17 +593,18 @@ SELECT
 	tx_telefono ,
 	tx_celular,	
 	IdEstado_reg
-FROM tb_proveedor where id = @Id
+FROM tb_cliente where id = @Id
 end
 
 go 
-create procedure sp_del_proveedor(
+create procedure sp_del_cliente(
 @Id int 
 )
 as
 begin
 
-update tb_proveedor
+update tb_cliente
 	set IdEstado_reg =0 
 	where id = @Id
 end
+go
