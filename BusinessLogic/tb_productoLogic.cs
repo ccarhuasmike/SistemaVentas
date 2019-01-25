@@ -16,9 +16,25 @@ namespace BusinessLogic
         {
             _tb_productoData = new tb_productoData();
         }
-        public ClientResponse ListarProducto(object[] parameter)
+        public ClientResponse sel_producto(object[] parameter)
         {
-            return _tb_productoData.ListarProducto(parameter);
+            return _tb_productoData.sel_producto(parameter);
+        }
+        public ClientResponse ins_producto(object[] parameter)
+        {
+            return _tb_productoData.ins_producto(parameter);
+        }
+        public ClientResponse update_proucto(object[] parameter)
+        {
+            return _tb_productoData.update_proucto(parameter);
+        }
+        public ClientResponse del_producto(object[] parameter)
+        {
+            return _tb_productoData.del_producto(parameter);
+        }
+        public ClientResponse sel_productoxId(object[] parameter)
+        {
+            return _tb_productoData.sel_productoxId(parameter);
         }
     }
 }

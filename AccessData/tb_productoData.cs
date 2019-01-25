@@ -35,31 +35,39 @@ namespace AccessData
         }
         #endregion
         #region Metodo
-        public ClientResponse insertar_producto(tb_producto objeto)
+        public ClientResponse ins_producto(object[] parametro)
         {
             int id = 0;
+            var _producto = (tb_producto)parametro[0];
             try
             {
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
                 {
-                    using (comando = new SqlCommand("sp_ins_tb_usuario", conexion))
+                    using (comando = new SqlCommand("sp_ins_producto", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = objeto.tx_nombre;
-                        //comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        //comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        //comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = objeto.tx_email;
-                        //comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = objeto.tx_login;
-                        //comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = objeto.tx_password;
-                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = objeto.IdUsuario_crea;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _producto.tx_nombre;
+                        comando.Parameters.Add("@tx_descripcion", SqlDbType.VarChar, 1000).Value = _producto.tx_descripcion;
+                        comando.Parameters.Add("@In_cant_producto", SqlDbType.Int).Value = _producto.In_cant_producto;
+                        comando.Parameters.Add("@In_unidad", SqlDbType.Int).Value = _producto.In_unidad;
+                        comando.Parameters.Add("@db_precio_costo", SqlDbType.Decimal).Value = _producto.db_precio_costo;
+                        comando.Parameters.Add("@db_precio_sin_igv", SqlDbType.Decimal).Value = _producto.db_precio_sin_igv;
+                        comando.Parameters.Add("@db_precio_bruto_igv", SqlDbType.Decimal).Value = _producto.db_precio_bruto_igv;
+                        comando.Parameters.Add("@In_igv", SqlDbType.Decimal).Value = _producto.In_igv;
+                        comando.Parameters.Add("@tx_imagen_producto", SqlDbType.VarChar, 500).Value = _producto.tx_imagen_producto;
+                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int).Value = _producto.IdUsuario_crea;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                         conexion.Open();
                         comando.ExecuteNonQuery();
                         if (comando.Parameters["@Id"] != null)
                         {
                             id = Convert.ToInt32(comando.Parameters["@Id"].Value);
-                            //IEnumerable<Tbl_usuario> lst = GetUsuario_X_Id(id);
-                            //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
+                            object initDatos = new
+                            {
+                                Id = id
+                            };
+                            clientResponse.Status = "OK";
+                            clientResponse.Data = initDatos;                            
                         }
                     }
                 }
@@ -78,28 +86,30 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse update_proucto(tb_producto objeto)
+        public ClientResponse update_proucto(object[] parametro)
         {
             try
             {
+                var _producto = (tb_producto)parametro[0];
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
                 {
                     using (comando = new SqlCommand("sp_upd_tb_usuario", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = objeto.tx_nombre == null ? "" : objeto.tx_nombre;
-                        //comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno == null ? "" : objeto.tx_apellido_paterno;
-                        //comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_materno == null ? "" : objeto.tx_apellido_materno;
-                        //comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = objeto.tx_email == null ? "" : objeto.tx_email;
-                        //comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = objeto.tx_login == null ? "" : objeto.tx_login;
-                        //comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = objeto.tx_password == null ? "" : objeto.tx_password; 
-                        comando.Parameters.Add("@IdUsuario_mod", SqlDbType.Int).Value = objeto.IdUsuario_mod;
-                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = objeto.Id;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _producto.tx_nombre == null ? "" : _producto.tx_nombre;
+                        comando.Parameters.Add("@tx_descripcion", SqlDbType.VarChar, 50).Value = _producto.tx_descripcion == null ? "" : _producto.tx_descripcion;
+                        comando.Parameters.Add("@In_cant_producto", SqlDbType.VarChar, 50).Value = _producto.In_cant_producto;
+                        comando.Parameters.Add("@In_unidad", SqlDbType.VarChar, 50).Value = _producto.In_unidad;
+                        comando.Parameters.Add("@db_precio_costo", SqlDbType.VarChar, 20).Value = _producto.db_precio_costo;
+                        comando.Parameters.Add("@db_precio_sin_igv", SqlDbType.VarChar, 200).Value = _producto.db_precio_sin_igv;
+                        comando.Parameters.Add("@db_precio_bruto_igv", SqlDbType.Decimal).Value = _producto.db_precio_bruto_igv;
+                        comando.Parameters.Add("@In_igv", SqlDbType.VarChar, 20).Value = _producto.In_igv ;
+                        comando.Parameters.Add("@tx_imagen_producto", SqlDbType.VarChar, 500).Value = _producto.tx_imagen_producto == null ? "" : _producto.tx_imagen_producto;
+                        comando.Parameters.Add("@IdUsuario_mod", SqlDbType.Int).Value = _producto.IdUsuario_mod;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _producto.Id;
                         conexion.Open();
                         comando.ExecuteNonQuery();
-                        //IEnumerable<Tbl_anuncio> lst = GetAnucionXId(objeto.id);
-                        //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
+                        clientResponse.Status = "OK";
                     }
                 }
             }
@@ -117,8 +127,86 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse ListarProducto(object[] parametro)
+        public ClientResponse del_producto(object[] parametro)
+        {
+            try
+            {
+                var _producto = (tb_producto)parametro[0];
+                using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
+                {
+                    using (comando = new SqlCommand("sp_del_producto", conexion))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _producto.Id;
+                        conexion.Open();
+                        comando.ExecuteNonQuery();
+                        clientResponse.Status = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clientResponse.Mensaje = ex.Message;
+                clientResponse.Status = "ERROR";
+            }
+            finally
+            {
+                conexion.Close();
+                conexion.Dispose();
+                comando.Dispose();
+                reader.Dispose();
+            }
+            return clientResponse;
+        }
+        public ClientResponse sel_productoxId(object[] parametro)
+        {
+            var _producto = (tb_producto)parametro[0];
+            try
+            {
+                using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
+                {
+                    using (comando = new SqlCommand("sp_sel_producto_x_id", conexion))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _producto.Id;
+                        conexion.Open();
+                        using (reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                entidad = new tb_producto();
+                                entidad.Id = (reader["Id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["Id"].ToString());
+                                entidad.Codigo = (reader["Codigo"] == DBNull.Value) ? String.Empty : (reader["Codigo"]).ToString();
+                                entidad.tx_nombre = (reader["tx_nombre"] == DBNull.Value) ? String.Empty : (reader["tx_nombre"]).ToString();
+                                entidad.tx_descripcion = (reader["tx_descripcion"] == DBNull.Value) ? String.Empty : (reader["tx_descripcion"]).ToString();
+                                entidad.In_cant_producto = (reader["In_cant_producto"] == DBNull.Value) ? 0 : int.Parse((reader["In_cant_producto"]).ToString());
+                                entidad.db_precio_costo = (reader["db_precio_costo"] == DBNull.Value) ? 0 : double.Parse((reader["db_precio_costo"]).ToString());
+                                entidad.db_precio_sin_igv = (reader["db_precio_sin_igv"] == DBNull.Value) ? 0 : double.Parse((reader["db_precio_sin_igv"]).ToString());
+                                entidad.db_precio_bruto_igv = (reader["db_precio_bruto_igv"] == DBNull.Value) ? 0 : double.Parse((reader["db_precio_bruto_igv"]).ToString());
+                                entidad.In_igv = (reader["In_igv"] == DBNull.Value) ? 0 : double.Parse((reader["In_igv"]).ToString());
+                                entidad.tx_imagen_producto = (reader["tx_imagen_producto"] == DBNull.Value) ? String.Empty : (reader["tx_imagen_producto"]).ToString();
+                                entidad.IdEstado_reg = (reader["IdEstado_reg"] == DBNull.Value) ? 0 : int.Parse((reader["IdEstado_reg"]).ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clientResponse.Mensaje = ex.Message;
+                clientResponse.Status = "ERROR";
+            }
+            finally
+            {
+                conexion.Close();
+                conexion.Dispose();
+                comando.Dispose();
+                reader.Dispose();
+            }
+            clientResponse.DataJson = JsonConvert.SerializeObject(entidad).ToString();
+            return clientResponse;
+        }
+        public ClientResponse sel_producto(object[] parametro)
         {
             var _producto = (tb_producto)parametro[0];
             var _paginacion = (Pagination)parametro[1];
@@ -185,7 +273,6 @@ namespace AccessData
             clientResponse.paginacion = JsonConvert.SerializeObject(responsepaginacion).ToString();
             return clientResponse;
         }
-
         #endregion
     }
 }

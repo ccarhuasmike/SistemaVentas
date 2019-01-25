@@ -36,9 +36,10 @@ namespace AccessData
         #endregion
 
         #region Metodo
-        public ClientResponse insertar_proveedor(tb_proveedor objeto)
+        public ClientResponse ins_proveedor(object[] parametro)
         {
             int id = 0;
+            var _proveedor= (tb_proveedor)parametro[0];
             try
             {
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
@@ -46,19 +47,25 @@ namespace AccessData
                     using (comando = new SqlCommand("sp_ins_tb_usuario", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = objeto.tx_nombre;
-                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = objeto.tx_email;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _proveedor.tx_nombre;
+                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _proveedor.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _proveedor.tx_apellido_paterno;
+                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = _proveedor.tx_email;
                         //comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = objeto.tx_login;
                         //comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = objeto.tx_password;
-                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = objeto.IdUsuario_crea;
+                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = _proveedor.IdUsuario_crea;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                         conexion.Open();
                         comando.ExecuteNonQuery();
                         if (comando.Parameters["@Id"] != null)
                         {
                             id = Convert.ToInt32(comando.Parameters["@Id"].Value);
+                            object initDatos = new
+                            {
+                                Id = id
+                            };
+                            clientResponse.Status = "OK";
+                            clientResponse.Data = initDatos;
                             //IEnumerable<Tbl_usuario> lst = GetUsuario_X_Id(id);
                             //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
                         }
@@ -79,8 +86,7 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse update_proveedor(tb_proveedor objeto)
+        public ClientResponse upd_proveedor(tb_proveedor objeto)
         {
             try
             {
@@ -118,8 +124,7 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse ListarProveedor(object[] parametro)
+        public ClientResponse sel_proveedor(object[] parametro)
         {
             var _proveedor = (tb_proveedor)parametro[0];
             var _paginacion = (Pagination)parametro[1];
@@ -179,14 +184,12 @@ namespace AccessData
             Pagination responsepaginacion = new Pagination()
             {
                 TotalItems = recordCount,
-                TotalPages = (int)Math.Ceiling((double)recordCount / _paginacion.ItemsPerPage)
-                //TotalPages = (int)Math.Ceiling((double)recordCount / objeto.ItemsPerPage)
+                TotalPages = (int)Math.Ceiling((double)recordCount / _paginacion.ItemsPerPage)                
             };
             clientResponse.DataJson = JsonConvert.SerializeObject(lstproveedor).ToString();
             clientResponse.paginacion = JsonConvert.SerializeObject(responsepaginacion).ToString();
             return clientResponse;
         }
-
         #endregion
     }
 }

@@ -36,29 +36,37 @@ namespace AccessData
         #endregion
 
         #region Metodo
-        public ClientResponse insertar_usuario(tb_usuario objeto)
+        public ClientResponse ins_usuario(object[] parametro)
         {
             int id = 0;
+            var _usuario = (tb_usuario)parametro[0];
             try
             {
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
                 {
-                    using (comando = new SqlCommand("sp_ins_tb_usuario", conexion))
+                    using (comando = new SqlCommand("sp_ins_usuario", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = objeto.tx_nombre;
-                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno;
-                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = objeto.tx_email;
-                        comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = objeto.tx_login;
-                        comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = objeto.tx_password;
-                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = objeto.IdUsuario_crea;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _usuario.tx_nombre;
+                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _usuario.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _usuario.tx_apellido_paterno;
+                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = _usuario.tx_email;
+                        comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = _usuario.tx_login;
+                        comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = _usuario.tx_password;
+                        comando.Parameters.Add("@IdUsuario_crea", SqlDbType.Int, 50).Value = _usuario.IdUsuario_crea;
                         comando.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
                         conexion.Open();
                         comando.ExecuteNonQuery();
                         if (comando.Parameters["@Id"] != null)
                         {
+
                             id = Convert.ToInt32(comando.Parameters["@Id"].Value);
+                            object initDatos = new
+                            {
+                                Id = id
+                            };
+                            clientResponse.Status = "OK";
+                            clientResponse.Data = initDatos;
                             //IEnumerable<Tbl_usuario> lst = GetUsuario_X_Id(id);
                             //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
                         }
@@ -79,28 +87,27 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse update_usuario(tb_usuario objeto)
+        public ClientResponse upd_usuario(object[] parametro)
         {
             try
             {
+                var _usuario = (tb_usuario)parametro[0];
                 using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
                 {
-                    using (comando = new SqlCommand("sp_upd_tb_usuario", conexion))
+                    using (comando = new SqlCommand("sp_upd_usuario", conexion))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = objeto.tx_nombre == null ? "" : objeto.tx_nombre;
-                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_paterno == null ? "" : objeto.tx_apellido_paterno;
-                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = objeto.tx_apellido_materno == null ? "" : objeto.tx_apellido_materno;
-                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = objeto.tx_email == null ? "" : objeto.tx_email;
-                        comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = objeto.tx_login == null ? "" : objeto.tx_login;
-                        comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = objeto.tx_password == null ? "" : objeto.tx_password; ;
-                        comando.Parameters.Add("@IdUsuario_mod", SqlDbType.Int).Value = objeto.IdUsuario_mod;
-                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = objeto.Id;
+                        comando.Parameters.Add("@tx_nombre", SqlDbType.VarChar, 50).Value = _usuario.tx_nombre == null ? "" : _usuario.tx_nombre;
+                        comando.Parameters.Add("@tx_apellido_paterno", SqlDbType.VarChar, 50).Value = _usuario.tx_apellido_paterno == null ? "" : _usuario.tx_apellido_paterno;
+                        comando.Parameters.Add("@tx_apellido_materno", SqlDbType.VarChar, 50).Value = _usuario.tx_apellido_materno == null ? "" : _usuario.tx_apellido_materno;
+                        comando.Parameters.Add("@txt_email", SqlDbType.VarChar, 50).Value = _usuario.tx_email == null ? "" : _usuario.tx_email;
+                        comando.Parameters.Add("@tx_login", SqlDbType.VarChar, 20).Value = _usuario.tx_login == null ? "" : _usuario.tx_login;
+                        comando.Parameters.Add("@tx_password", SqlDbType.VarChar, 200).Value = _usuario.tx_password == null ? "" : _usuario.tx_password; ;
+                        comando.Parameters.Add("@IdUsuario_mod", SqlDbType.Int).Value = _usuario.IdUsuario_mod;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _usuario.Id;
                         conexion.Open();
                         comando.ExecuteNonQuery();
-                        //IEnumerable<Tbl_anuncio> lst = GetAnucionXId(objeto.id);
-                        //clientResponse.DataJson = JsonConvert.SerializeObject(lst).ToString();
+                        clientResponse.Status = "OK";
                     }
                 }
             }
@@ -118,8 +125,82 @@ namespace AccessData
             }
             return clientResponse;
         }
-
-        public ClientResponse ListarUsuario(object[] parametro)
+        public ClientResponse del_usuario(object[] parametro)
+        {
+            try
+            {
+                var _usuario = (tb_usuario)parametro[0];
+                using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
+                {
+                    using (comando = new SqlCommand("sp_del_tb_usuario", conexion))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _usuario.Id;
+                        conexion.Open();
+                        comando.ExecuteNonQuery();
+                        clientResponse.Status = "OK";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clientResponse.Mensaje = ex.Message;
+                clientResponse.Status = "ERROR";
+            }
+            finally
+            {
+                conexion.Close();
+                conexion.Dispose();
+                comando.Dispose();
+                reader.Dispose();
+            }
+            return clientResponse;
+        }      
+        public ClientResponse sel_usuarioxId(object[] parametro)
+        {
+            var _usuario = (tb_usuario)parametro[0];
+            try
+            {
+                using (conexion = new SqlConnection(ConnectionBaseSql.ConexionBDSQL().ToString()))
+                {
+                    using (comando = new SqlCommand("sp_sel_usuario_x_id", conexion))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = _usuario.Id;
+                        conexion.Open();
+                        using (reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                entidad = new tb_usuario();
+                                entidad.Id = (reader["id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["id"].ToString());
+                                entidad.tx_nombre = (reader["tx_nombre"] == DBNull.Value) ? String.Empty : (reader["tx_nombre"]).ToString();
+                                entidad.tx_apellido_paterno = (reader["tx_apellido_paterno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_paterno"]).ToString();
+                                entidad.tx_apellido_materno = (reader["tx_apellido_materno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_materno"]).ToString();
+                                entidad.tx_email = (reader["tx_email"] == DBNull.Value) ? String.Empty : (reader["tx_email"]).ToString();
+                                entidad.tx_login = (reader["tx_login"] == DBNull.Value) ? String.Empty : (reader["tx_login"]).ToString();
+                                entidad.tx_password = (reader["tx_password"] == DBNull.Value) ? string.Empty : (reader["tx_password"]).ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clientResponse.Mensaje = ex.Message;
+                clientResponse.Status = "ERROR";
+            }
+            finally
+            {
+                conexion.Close();
+                conexion.Dispose();
+                comando.Dispose();
+                reader.Dispose();
+            }
+            clientResponse.DataJson = JsonConvert.SerializeObject(entidad).ToString();
+            return clientResponse;
+        }
+        public ClientResponse sel_usuario(object[] parametro)
         {
             var _persona = (tb_usuario)parametro[0];
             var _paginacion = (Pagination)parametro[1];
@@ -145,7 +226,6 @@ namespace AccessData
                             while (reader.Read())
                             {
                                 entidad = new tb_usuario();
-
                                 entidad.Id = (reader["id"] == DBNull.Value) ? 0 : Convert.ToInt32(reader["id"].ToString());
                                 entidad.tx_nombre = (reader["tx_nombre"] == DBNull.Value) ? String.Empty : (reader["tx_nombre"]).ToString();
                                 entidad.tx_apellido_paterno = (reader["tx_apellido_paterno"] == DBNull.Value) ? String.Empty : (reader["tx_apellido_paterno"]).ToString();
@@ -153,8 +233,6 @@ namespace AccessData
                                 entidad.tx_email = (reader["tx_email"] == DBNull.Value) ? String.Empty : (reader["tx_email"]).ToString();
                                 entidad.tx_login = (reader["tx_login"] == DBNull.Value) ? String.Empty : (reader["tx_login"]).ToString();
                                 entidad.tx_password = (reader["tx_password"] == DBNull.Value) ? string.Empty : (reader["tx_password"]).ToString();
-                                /*entidad.Fechaproceso = (reader["fechaproceso"] == DBNull.Value) ? String.Empty : (reader["fechaproceso"]).ToString();
-                                entidad.Fecharegistro = (reader["fecharegistro"] == DBNull.Value) ? String.Empty : (reader["fecharegistro"]).ToString();*/
                                 lstusuario.Add(entidad);
                             }
                         }
@@ -184,7 +262,6 @@ namespace AccessData
             clientResponse.paginacion = JsonConvert.SerializeObject(responsepaginacion).ToString();
             return clientResponse;
         }
-
         #endregion
     }
 }

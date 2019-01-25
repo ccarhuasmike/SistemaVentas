@@ -9,3 +9,4 @@ D:\Proyectos\SistemaVentas\BusinessEntity\bin\Debug\BusinessEntity.pdb
 D:\Proyectos\SistemaVentas\BusinessEntity\obj\Debug\BusinessEntity.csproj.CoreCompileInputs.cache
 D:\Proyectos\SistemaVentas\BusinessEntity\obj\Debug\BusinessEntity.dll
 D:\Proyectos\SistemaVentas\BusinessEntity\obj\Debug\BusinessEntity.pdb
+D:\Proyectos\SistemaVentas\BusinessEntity\obj\Debug\BusinessEntity.csprojAssemblyReference.cache

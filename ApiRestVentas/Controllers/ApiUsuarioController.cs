@@ -13,13 +13,69 @@ namespace ApiRestVentas.Controllers
     [RoutePrefix("api/usuario")]
     public class ApiUsuarioController : ApiController
     {
-        [Route("listarUsuario"), HttpPost]
-        public ClientResponse listarUsuario(CreateParameters parameter)
+        [Route("sel_usuario"), HttpPost]
+        public ClientResponse sel_usuario(CreateParameters parameter)
         {
             ClientResponse response;
             try
             {   
-                response = new tb_usuarioLogic().ListarUsuario(new object[] { parameter.usuario, parameter.paginacion });
+                response = new tb_usuarioLogic().sel_usuario(new object[] { parameter.usuario, parameter.paginacion });
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return response;
+        }
+        [Route("sel_usuarioxId"), HttpPost]
+        public ClientResponse sel_usuarioxId(CreateParameters parameter)
+        {
+            ClientResponse response;
+            try
+            {
+                response = new tb_usuarioLogic().sel_usuarioxId(new object[] { parameter.usuario });
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return response;
+        }
+        [Route("del_usuario"), HttpPost]
+        public ClientResponse del_usuario(CreateParameters parameter)
+        {
+            ClientResponse response;
+            try
+            {
+                response = new tb_usuarioLogic().del_usuario(new object[] { parameter.usuario });
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return response;
+        }
+        [Route("upd_usuario"), HttpPost]
+        public ClientResponse upd_usuario(CreateParameters parameter)
+        {
+            ClientResponse response;
+            try
+            {
+                response = new tb_usuarioLogic().upd_usuario(new object[] { parameter.usuario });
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return response;
+        }
+        [Route("ins_usuario"), HttpPost]
+        public ClientResponse ins_usuario(CreateParameters parameter)
+        {
+            ClientResponse response;
+            try
+            {
+                response = new tb_usuarioLogic().ins_usuario(new object[] { parameter.usuario });
             }
             catch (Exception exception)
             {
